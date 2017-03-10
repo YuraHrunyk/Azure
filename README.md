@@ -69,3 +69,25 @@ At this point you should be ready to access your cluster from your machine. Try 
 - kubectl get nodes
 
 Verify that you can see a list of the machines in your cluster.
+
+# Create your first Kubernetes service
+
+Start a simple container
+
+You can run a simple container (in this case the Nginx web server) by running:
+
+- kubectl run nginx --image nginx
+
+This command starts the Nginx Docker container in a pod on one of the nodes.
+
+To see the running container, run:
+
+- kubectl get pods
+
+Expose the service to the world
+
+To expose the service to the world, create a Kubernetes Service of type LoadBalancer:
+
+- kubectl expose deployments nginx --port=80 --type=LoadBalancer
+
+This causes Kubernetes to create an Azure load balancer rule with a public IP address. The change takes a few minutes to propagate to the load balancer. For more information, see Load balance containers in a Kubernetes cluster in Azure Container Service.
